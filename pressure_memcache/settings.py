@@ -31,24 +31,12 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
     'foo',
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
 )
 
 ROOT_URLCONF = 'pressure_memcache.urls'
@@ -107,9 +95,11 @@ import subprocess
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        # 'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
         'LOCATION': [
-            subprocess.check_output('boot2docker ip', shell=True).decode().strip(),
+            '%(host)s:%(port)d' % {
+                'host': subprocess.check_output('boot2docker ip', shell=True).decode().strip(),
+                'port': 11211,
+            }
         ],
     }
 }
