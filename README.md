@@ -1,3 +1,9 @@
+# Solved
+
+**This is a behavior of browser sending a request with just before cookie.
+It may be browser cancels current response and sends next request with the cookie.
+So the values in cookie and in session were different**
+
 # About This
 
 An examination to check session **leak** (memcache backed cache based session leak) with Django.

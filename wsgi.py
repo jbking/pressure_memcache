@@ -46,6 +46,7 @@ def top(request):
     response = HttpResponse(s, content_type='text/plain')
     response.set_cookie('v', v)
     request.session['v'] = v
+    print('new value: {}'.format(v))
     return response
 
 

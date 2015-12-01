@@ -32,5 +32,5 @@ def close_memcache_connection():
 
 def post_fork(server, worker):
     import wsgi  # NOQA
-    print('post_work is called')
+    #print('post_work is called')
     close_memcache_connection()
